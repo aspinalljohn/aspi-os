@@ -1,0 +1,21 @@
+{
+  "_comment": "Replace the absolute paths with your own. These hooks run when a Claude Code session ends in the vault: back the vault up to a PRIVATE git remote, then write a session log. Keep the scripts outside the vault (e.g. ~/scripts) so Full Disk Access survives macOS updates. Both scripts ship as .template files in /scripts — copy them out, edit the paths, and chmod +x.",
+  "hooks": {
+    "SessionEnd": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "/bin/zsh /Users/youruser/scripts/vault-backup.sh >/dev/null 2>&1 &",
+            "statusMessage": "Backing up vault to private git remote"
+          },
+          {
+            "type": "command",
+            "command": "/bin/zsh /Users/youruser/scripts/session-log.sh",
+            "statusMessage": "Writing session log"
+          }
+        ]
+      }
+    ]
+  }
+}

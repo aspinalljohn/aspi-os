@@ -1,0 +1,50 @@
+#!/bin/zsh
+# inbox-sweep.sh — nightly inbox triage. Runs Claude Code headless against the
+# vault to format inbox items, cross-link them, and propose routing. Wire it to
+# a launchd agent (macOS) or cron (Linux) at e.g. 23:30 daily.
+# Run manually any time:  zsh scripts/inbox-sweep.sh
+
+set -euo pipefail
+
+# launchd/cron start with a minimal environment — set what we need explicitly.
+export HOME="/Users/youruser"                                   # <-- EDIT
+export PATH="$HOME/.local/bin:/opt/homebrew/bin:/usr/bin:/bin:/usr/sbin:/sbin"
+
+VAULT="$HOME/path/to/your/vault"                                # <-- EDIT
+CLAUDE="$HOME/.local/bin/claude"
+LOG="$VAULT/.tmp/inbox-sweep.log"
+
+mkdir -p "$VAULT/.tmp"
+cd "$VAULT"
+
+echo "===== inbox-sweep run: $(date '+%Y-%m-%d %H:%M:%S %Z') =====" >> "$LOG"
+
+# Fast exit: if inbox holds nothing but .gitkeep, do nothing.
+real_items=$(find "00 inbox" -maxdepth 1 -type f ! -name '.gitkeep' ! -name '.DS_Store' | wc -l | tr -d ' ')
+if [[ "$real_items" == "0" ]]; then
+  echo "inbox empty — nothing to do." >> "$LOG"
+  exit 0
+fi
+echo "found $real_items item(s) to triage." >> "$LOG"
+
+read -r -d '' PROMPT <<'EOF' || true
+You are the Librarian for this Obsidian vault. This is a nightly automated inbox sweep.
+Work only inside this vault; do not push git or contact any external service.
+
+TASK — process every file in "00 inbox/" EXCEPT .gitkeep and .DS_Store:
+
+1. FORMAT each file into clean structured markdown following the gobble conventions
+   (see "08 vault operations/gobble.md"): TL;DR, key points, notable quotes, Related.
+   Preserve the owner's voice — structure and tidy, do not corporate-ify.
+
+2. CROSS-LINK. Scan 01 reading/, 02 venture-one/, 03 venture-two/, 04 venture-three/,
+   05 projects/, 06 me/, 07 potential skills/ for genuinely related notes and add them
+   as [[wikilinks]]. Real semantic matches only — never manufacture links. Honor the
+   link gate (>= 2 links, one to the domain hub).
+
+3. ROUTE each file to its destination folder with a final lowercase filename, then
+   write ONE triage report to "00 inbox/_triage-YYYY-MM-DD.md" summarizing what moved where.
+EOF
+
+"$CLAUDE" -p "$PROMPT" --permission-mode acceptEdits >> "$LOG" 2>&1
+echo "$(date '+%Y-%m-%d %H:%M:%S') sweep complete." >> "$LOG"

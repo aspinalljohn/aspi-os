@@ -1,0 +1,30 @@
+#!/bin/zsh
+# vault-backup.sh — commit + push of the vault to a (private) Git remote.
+# Invoke from a Claude Code SessionEnd hook and/or an hourly launchd/cron job.
+# Keep this script OUTSIDE the vault (e.g. ~/scripts) so macOS Full Disk Access
+# survives OS updates, and so the script itself isn't committed into the vault.
+#
+# SETUP: set VAULT to your vault path, create a PRIVATE GitHub repo, and run
+#   git init && git remote add origin <your-private-repo> && git push -u origin main
+# once by hand first. NEVER point this at a public repo — your notes are private.
+
+export PATH="/opt/homebrew/bin:/usr/local/bin:/usr/bin:/bin"
+VAULT="$HOME/path/to/your/vault"          # <-- EDIT
+LOG="$HOME/scripts/logs/vault-backup.log"
+mkdir -p "$HOME/scripts/logs"
+
+cd "$VAULT" || { echo "$(date '+%Y-%m-%d %H:%M:%S') ERROR: cannot cd to vault" >> "$LOG"; exit 1; }
+
+if [ -n "$(git status --porcelain)" ]; then
+  git add -A
+  git commit -m "Auto-backup $(date '+%Y-%m-%d %H:%M')" >> "$LOG" 2>&1
+  echo "$(date '+%Y-%m-%d %H:%M:%S') committed changes" >> "$LOG"
+else
+  echo "$(date '+%Y-%m-%d %H:%M:%S') no changes to commit" >> "$LOG"
+fi
+
+if git push origin main >> "$LOG" 2>&1; then
+  echo "$(date '+%Y-%m-%d %H:%M:%S') push ok" >> "$LOG"
+else
+  echo "$(date '+%Y-%m-%d %H:%M:%S') push FAILED" >> "$LOG"
+fi
