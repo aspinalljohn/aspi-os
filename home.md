@@ -13,8 +13,9 @@ The front door. Everything in the vault is reachable from here in two clicks: pi
 - [[venture-one hub]] → your first daily venture
 - [[venture-two hub]] → your second daily venture
 - [[venture-three hub]] → your third daily venture
+- [[fractional hub]] → standing fractional / advisory engagements
 - [[me hub]] → personal brand, health, journal, reflection
-- [[reading hub]] → digested articles, threads, research, reference by topic
+- [[knowledge hub]] → digested articles, threads, research, reference by topic
 - [[projects hub]] → standalone, time-bound projects
 - [[resources hub]] → active reference kept at the ready (specs, configs, templates)
 - [[vault operations hub]] → primitives (gobble, skillify) + every running automation
@@ -22,9 +23,10 @@ The front door. Everything in the vault is reachable from here in two clicks: pi
 ## Quick entry points
 
 - `00 inbox/` → untriaged drop zone (should stay near empty)
-- `01 reading/` → digested articles, threads, research, reference
-- `05 projects/` → standalone, time-bound work
-- `09 resources/` → active reference kept at the ready
+- `01 knowledge/` → digested articles, threads, research, reference
+- `05 fractional/` → standing fractional / advisory engagements
+- `06 projects/` → standalone, time-bound work
+- `10 resources/` → active reference kept at the ready
 - `99 archive/` → completed, dormant, retired
 
 ## Across the whole vault → recently touched

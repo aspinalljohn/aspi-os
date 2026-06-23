@@ -5,7 +5,7 @@ description: Weekly vault hygiene and cross-linking pass. Scans recently modifie
 
 # Librarian sweep
 
-Keep the vault a living library instead of a filing cabinet. Run weekly, or whenever asked. Read `08 vault operations/note standards.md` first — it defines the conventions this sweep enforces.
+Keep the vault a living library instead of a filing cabinet. Run weekly, or whenever asked. Read `09 vault operations/note standards.md` first → it defines the conventions this sweep enforces.
 
 ## Scope
 
@@ -15,20 +15,20 @@ Default: notes modified in the last 7 days (`find . -name '*.md' -mtime -7`, exc
 
 Run all seven, collect findings, fix nothing yet:
 
-1. **Link gate.** Recently modified notes with fewer than 2 `[[wikilinks]]`, or no `## Related` section, or no link to their **domain hub** (`[[venture-one hub]]`, `[[reading hub]]`, etc.). For each, grep the vault for genuinely related notes (shared entities, clients, frameworks, topics). Propose links to satisfy the gate — one of them the domain hub — real semantic connections only, never manufactured. A note with no genuine relations gets flagged "no relations found, route to 00 inbox/", not a forced link.
-2. **Missing frontmatter.** New notes (created during the scan window) missing the required `tags:` (1-4) and `type:` keys, or using tags/type outside the closed list in `09 resources/tag-vocabulary.md`. Old notes are exempt — no backfill.
+1. **Link gate.** Recently modified notes with fewer than 2 `[[wikilinks]]`, or no `## Related` section, or no link to their **domain hub** (`[[venture-one hub]]`, `[[knowledge hub]]`, etc.). For each, grep the vault for genuinely related notes (shared entities, clients, frameworks, topics). Propose links to satisfy the gate → one of them the domain hub → real semantic connections only, never manufactured. A note with no genuine relations gets flagged "no relations found, route to 00 inbox/", not a forced link.
+2. **Missing frontmatter.** New notes (created during the scan window) missing the required `tags:` (1-4) and `type:` keys, or using tags/type outside the closed list in `10 resources/tag-vocabulary.md`. Old notes are exempt → no backfill.
 3. **MOC drift.** Notes created during the window that aren't referenced from their domain hub (`venture-one hub`, `reading hub`, etc.). Propose the hub line to add.
-4. **Inbox rot.** Anything sitting in `00 inbox/` — propose routing per the gobble heuristics.
+4. **Inbox rot.** Anything sitting in `00 inbox/` → propose routing per the gobble heuristics.
 5. **Naming violations.** New files/folders breaking lowercase convention (ASINs, `M500`, `CLAUDE.md`, `SKILL.md`, `README.md`, `AGENTS.md` exempt).
-6. **Strays.** Files at the vault root that aren't `home.md`, `CLAUDE.md`, `AGENTS.md`, or dotfiles; new top-level folders beyond the canonical eleven.
-7. **Stray binaries.** Binary files (PNG/JPG/PDF/video) that landed in the vault during the window — they belong in the assets store (`08 vault operations/assets store.md`). Exempt: images embedded in notes via `![[...]]`, `.excalidraw`, `09 resources/design-systems/`. Propose the mirrored `LifeOS Assets/` destination and the `## Assets` pointer to add.
+6. **Strays.** Files at the vault root that aren't `home.md`, `CLAUDE.md`, `AGENTS.md`, or dotfiles; new top-level folders beyond the canonical twelve.
+7. **Stray binaries.** Binary files (PNG/JPG/PDF/video) that landed in the vault during the window → they belong in the assets store (`09 vault operations/assets store.md`). Exempt: images embedded in notes via `![[...]]`, `.excalidraw`, `10 resources/design-systems/`. Propose the mirrored `LifeOS Assets/` destination and the `## Assets` pointer to add.
 
 ## Report, then fix
 
 Present one consolidated report:
 
 ```
-LIBRARIAN SWEEP — <date>, window: <N> days, <M> notes scanned
+LIBRARIAN SWEEP → <date>, window: <N> days, <M> notes scanned
 1. LINKS    <note> → propose [[x]], [[domain hub]]  (reason, one line each)
 2. FRONTMATTER  <note> → add tags: [<t>], type: <t>
 3. MOC      <hub> → add <note> under <section>
@@ -38,7 +38,7 @@ LIBRARIAN SWEEP — <date>, window: <N> days, <M> notes scanned
 7. BINARIES <path> (<size>) → move to LifeOS Assets/<mirrored path>, add ## Assets pointer
 ```
 
-Binary moves only run on a Mac (iCloud Drive is unreachable from cloud sessions — report them as pending there).
+Binary moves only run on a Mac (iCloud Drive is unreachable from cloud sessions → report them as pending there).
 
 Wait for approval (full or per-item). On approval:
 - Add proposed links under `## Related` in *both* directions (the note and its targets).
@@ -52,5 +52,5 @@ Finish with one line per category: what was applied, what was skipped.
 
 - Don't touch note *content* beyond frontmatter insertion and `## Related` appends.
 - Don't backfill frontmatter onto notes older than the scan window.
-- Don't manufacture links to hit a quota — sparse-but-real beats dense-but-fake.
+- Don't manufacture links to hit a quota → sparse-but-real beats dense-but-fake.
 - Don't rename files that other notes or skills reference without updating the references in the same pass.

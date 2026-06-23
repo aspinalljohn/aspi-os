@@ -1,11 +1,11 @@
 ---
 name: skillify
-description: Extract a reusable, portable prompt blueprint from a source (gobbled note, pasted content, transcript, paper, workflow description) and save it to `07 potential skills/` as a standalone markdown file. The output is a generic, copy-pasteable template — not a working Claude Code skill. Use when the user says "skillify this", "extract the skill", "make this reusable", or asks for a prompt/workflow blueprint from any source.
+description: Extract a reusable, portable prompt blueprint from a source (gobbled note, pasted content, transcript, paper, workflow description) and save it to `08 potential skills/` as a standalone markdown file. The output is a generic, copy-pasteable template → not a working Claude Code skill. Use when the user says "skillify this", "extract the skill", "make this reusable", or asks for a prompt/workflow blueprint from any source.
 ---
 
 # Skillify
 
-Convert any operational pattern — a workflow, framework, prompt architecture, or repeatable process described in a source — into a portable, modular prompt blueprint stored in the vault's Skill Library.
+Convert any operational pattern → a workflow, framework, prompt architecture, or repeatable process described in a source → into a portable, modular prompt blueprint stored in the vault's Skill Library.
 
 The output is **not** an installed Claude Code skill. It's a markdown blueprint the user can copy/port into any project, any agent, any LLM. To promote a blueprint to a real Claude Code skill, that's a separate manual step.
 
@@ -33,7 +33,7 @@ If the source is unclear, ask.
 
 3. **Abstract to a generic blueprint.** Strip source-specific details. What remains should work for any input that fits the pattern.
 
-4. **Write the blueprint** to `07 potential skills/<kebab-case-name>.md` using this structure:
+4. **Write the blueprint** to `08 potential skills/<kebab-case-name>.md` using this structure:
 
    ```markdown
    # <Title>
@@ -70,7 +70,7 @@ If the source is unclear, ask.
 
 7. **Cross-link back to the source.** If the source is a vault note, append `[[<blueprint-name>]]` under its `## Related` section.
 
-8. **Suggest promotion (optional).** If the blueprint is sharp enough to become a real Claude Code skill, mention it: "This could be promoted to `~/.claude/skills/<name>/SKILL.md` — want me to draft that next?"
+8. **Suggest promotion (optional).** If the blueprint is sharp enough to become a real Claude Code skill, mention it: "This could be promoted to `~/.claude/skills/<name>/SKILL.md` → want me to draft that next?"
 
 ## Naming
 
@@ -81,6 +81,6 @@ If the source is unclear, ask.
 ## Don't
 
 - Don't include source-specific names, brands, or examples in the blueprint body. Those go in the Notes section as illustration.
-- Don't write the blueprint as prose — it's a template. Use placeholders, code blocks, clear sections.
+- Don't write the blueprint as prose → it's a template. Use placeholders, code blocks, clear sections.
 - Don't skillify content that doesn't have a real reusable pattern. Some sources are just information; not everything becomes a skill.
-- Don't duplicate an existing blueprint — check `07 potential skills/` first; if something similar exists, propose updating it instead.
+- Don't duplicate an existing blueprint → check `08 potential skills/` first; if something similar exists, propose updating it instead.

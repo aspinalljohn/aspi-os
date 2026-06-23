@@ -1,18 +1,18 @@
 ---
-title: Venture Two Hub
+title: Fractional Hub
 tags: [moc, hub]
 type: moc
 ---
 
-# Venture Two Hub
+# Fractional Hub
 
-Map of content for your **second daily venture**. Rename this hub and folder to your real venture.
+Map of content for **fractional / advisory engagements** → companies where you hold a standing operating or advisory seat. Distinct from [[projects hub]]: a fractional role is an ongoing relationship at a company, not a time-bound project.
 
 ## Recently touched
 
 ```dataview
 TABLE dateformat(file.mtime, "yyyy-MM-dd") AS Modified, file.folder AS Where
-FROM "03 venture-two"
+FROM "05 fractional"
 WHERE file.name != this.file.name
 SORT file.mtime DESC
 LIMIT 15
@@ -22,7 +22,7 @@ LIMIT 15
 
 ```dataview
 LIST
-FROM "03 venture-two"
+FROM "05 fractional"
 WHERE file.name != this.file.name
 ```
 

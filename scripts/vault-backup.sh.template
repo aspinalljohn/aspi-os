@@ -1,12 +1,12 @@
 #!/bin/zsh
-# vault-backup.sh — commit + push of the vault to a (private) Git remote.
+# vault-backup.sh → commit + push of the vault to a (private) Git remote.
 # Invoke from a Claude Code SessionEnd hook and/or an hourly launchd/cron job.
 # Keep this script OUTSIDE the vault (e.g. ~/scripts) so macOS Full Disk Access
 # survives OS updates, and so the script itself isn't committed into the vault.
 #
 # SETUP: set VAULT to your vault path, create a PRIVATE GitHub repo, and run
 #   git init && git remote add origin <your-private-repo> && git push -u origin main
-# once by hand first. NEVER point this at a public repo — your notes are private.
+# once by hand first. NEVER point this at a public repo → your notes are private.
 
 export PATH="/opt/homebrew/bin:/usr/local/bin:/usr/bin:/bin"
 VAULT="$HOME/path/to/your/vault"          # <-- EDIT

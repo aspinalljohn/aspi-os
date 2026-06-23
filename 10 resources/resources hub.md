@@ -12,7 +12,7 @@ Map of content for **active reference** kept at the ready → specs, configs, te
 
 ```dataview
 TABLE dateformat(file.mtime, "yyyy-MM-dd") AS Modified, file.folder AS Where
-FROM "09 resources"
+FROM "10 resources"
 WHERE file.name != this.file.name
 SORT file.mtime DESC
 LIMIT 15
@@ -22,10 +22,10 @@ LIMIT 15
 
 ```dataview
 LIST
-FROM "09 resources"
+FROM "10 resources"
 WHERE file.name != this.file.name
 ```
 
 ## Related hubs
 
-[[home]] · [[venture-one hub]] · [[venture-two hub]] · [[venture-three hub]] · [[me hub]] · [[reading hub]] · [[projects hub]] · [[resources hub]] · [[vault operations hub]]
+[[home]] · [[venture-one hub]] · [[venture-two hub]] · [[venture-three hub]] · [[fractional hub]] · [[me hub]] · [[knowledge hub]] · [[projects hub]] · [[resources hub]] · [[vault operations hub]]

@@ -1,0 +1,38 @@
+#!/bin/zsh
+# session-log.sh → write a short AI-authored daily log of what the Claude Code
+# session just did, appended to "07 me/session logs/YYYY-MM-DD.md" in the vault.
+# Invoke from a Claude Code SessionEnd hook (see .claude/settings.json.example).
+# Keep this script OUTSIDE the vault (e.g. ~/scripts) so it isn't committed in.
+#
+# TWO GOTCHAS this template guards against:
+#   1. Recursion → a session-log write can itself trigger another SessionEnd.
+#      We set a sentinel env var and bail if we're already inside a log run.
+#   2. Inner-settings → the headless `claude -p` call below inherits the vault's
+#      hooks and would try to log its own run. We point it at a STRIPPED settings
+#      file with no hooks (INNER_SETTINGS) so the inner call stays silent.
+
+export PATH="/opt/homebrew/bin:/usr/local/bin:/usr/bin:/bin"
+VAULT="$HOME/path/to/your/vault"                       # <-- EDIT
+INNER_SETTINGS="$HOME/scripts/claude-nohooks.json"     # <-- a {"hooks":{}} file
+LOG="$HOME/scripts/logs/session-log.log"
+mkdir -p "$HOME/scripts/logs"
+
+# Guard 1: recursion sentinel
+[ -n "$ASPI_SESSION_LOG_RUNNING" ] && exit 0
+export ASPI_SESSION_LOG_RUNNING=1
+
+# Ensure the stripped inner-settings file exists (no hooks → no recursion)
+[ -f "$INNER_SETTINGS" ] || echo '{"hooks":{}}' > "$INNER_SETTINGS"
+
+cd "$VAULT" || { echo "$(date '+%Y-%m-%d %H:%M:%S') ERROR: cannot cd to vault" >> "$LOG"; exit 1; }
+
+DAY=$(date '+%Y-%m-%d')
+OUT="07 me/session logs/$DAY.md"
+mkdir -p "07 me/session logs"
+
+# Append an AI-authored summary of the session to today's log.
+claude -p --settings "$INNER_SETTINGS" \
+  "Append a concise dated bullet summary of what this Claude Code session did to the file \"$OUT\" (create it with an '# $DAY' heading if missing). Keep it factual and short. Do not touch any other file." \
+  >> "$LOG" 2>&1 \
+  && echo "$(date '+%Y-%m-%d %H:%M:%S') session log written" >> "$LOG" \
+  || echo "$(date '+%Y-%m-%d %H:%M:%S') session log FAILED" >> "$LOG"

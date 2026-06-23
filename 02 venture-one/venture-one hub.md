@@ -28,4 +28,4 @@ WHERE file.name != this.file.name
 
 ## Related hubs
 
-[[home]] · [[venture-one hub]] · [[venture-two hub]] · [[venture-three hub]] · [[me hub]] · [[reading hub]] · [[projects hub]] · [[resources hub]] · [[vault operations hub]]
+[[home]] · [[venture-one hub]] · [[venture-two hub]] · [[venture-three hub]] · [[fractional hub]] · [[me hub]] · [[knowledge hub]] · [[projects hub]] · [[resources hub]] · [[vault operations hub]]

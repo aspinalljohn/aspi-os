@@ -12,7 +12,7 @@ How this vault operates on itself → the primitives ([[gobble]], [[skillify]]),
 
 ```dataview
 TABLE dateformat(file.mtime, "yyyy-MM-dd") AS Modified, file.folder AS Where
-FROM "08 vault operations"
+FROM "09 vault operations"
 WHERE file.name != this.file.name
 SORT file.mtime DESC
 LIMIT 15
@@ -22,10 +22,10 @@ LIMIT 15
 
 ```dataview
 LIST
-FROM "08 vault operations"
+FROM "09 vault operations"
 WHERE file.name != this.file.name
 ```
 
 ## Related hubs
 
-[[home]] · [[venture-one hub]] · [[venture-two hub]] · [[venture-three hub]] · [[me hub]] · [[reading hub]] · [[projects hub]] · [[resources hub]] · [[vault operations hub]]
+[[home]] · [[venture-one hub]] · [[venture-two hub]] · [[venture-three hub]] · [[fractional hub]] · [[me hub]] · [[knowledge hub]] · [[projects hub]] · [[resources hub]] · [[vault operations hub]]
