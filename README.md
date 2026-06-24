@@ -120,4 +120,23 @@ That's it. The system works from the first `/gobble`.
 
 Most note systems fail because filing is friction and orphan notes pile up until search is the only way in. Aspi OS removes the friction (the AI files for you) and forbids the orphans (the link gate). What you're left with is a knowledge base that compounds → every note makes the next one easier to connect, and the graph is always reachable from `home`.
 
+---
+
+## Changelog
+
+This starter tracks the live system it's extracted from → improvements get ported back as they prove out.
+
+**2026-06-24**
+- `librarian-sweep`: added the **deliverable exemption** (the sweep now skips `client-deliverable` / `*/clients/*` notes from every check, so it reports on the knowledge layer only, not production output) and a new **skill-ref link check** (rewrites `[[skill-name]]` wikilinks → backticked `` `skill-name` `` since skills aren't notes and the links dangle).
+
+**2026-06-23**
+- Moved to the **twelve-folder model** and added `05 fractional/` for standing advisory seats (distinct from time-bound `06 projects/`).
+- Added `10 resources/decision-log.md` as the **tool-agnostic memory** every agent reads before acting.
+- Hooks now ship **disabled by default** → opt in via `.claude/settings.json.example`.
+
+**2026-06-12**
+- Initial public release: the method, the twelve-folder scaffold, `CLAUDE.md` librarian instructions, and ten portable skills.
+
+---
+
 Built by [Aspi](https://goaspi.com). MIT licensed → take it, fork it, make it yours.
